@@ -73,13 +73,9 @@ def lnprior(theta):
 
 # Log-likelihood function
 def lnlike(theta):
-	try:
-		LC_model = LC_sim(theta)
-		LC_model_r = LC_sim_r(theta)
-		sigma2 = err_flux**2.0
-		chisq = np.sum((flux - LC_model)**2.0 / sigma2)
-	except:
-		chisq = np.inf
+	LC_model = LC_sim(theta)
+	sigma2 = err_flux**2.0
+	chisq = np.sum((flux - LC_model)**2.0 / sigma2)
 	return -0.5 * chisq
 
 # Log-likelihood prob
@@ -95,15 +91,20 @@ def main_fit():
 	if not pool.is_master():
 		pool.wait()
 		sys.exit(0)
-	psize = pos_lim_max-pos_lim_min
+		
+	# Create an initial point
+	psize = pos_lim_max - pos_lim_min
 	p0   = [pos_lim_min + psize*np.random.rand(ndim) for i in range(nwalkers)]
 	
-	# Set initial sample
+	# Set a sample
 	sampler = emcee.EnsembleSampler(nwalkers, ndim, lnprob, pool=pool)
+	
 	# Run MCMC
 	sampler.run_mcmc(p0, burnin)
+	
 	# Flat sample and discard 10% sample
 	flat_samples = sampler.get_chain(discard=int(0.1 * burnin), flat=True)
+	
 	pool.close()
 	return flat_samples
 
