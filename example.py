@@ -26,8 +26,8 @@ flux     = data[:, 1]
 err_gflux = data[:, 2]
 
 # Setting BC
-pos_lim_min = np.array([0.15, 0.10, 35000.0, 1500.0, 1.0])
-pos_lim_max = np.array([0.25, 0.22, 48000.0, 4000.0, 10.0])
+pos_lim_min = np.array([0.15, 0.10, 35000.0, 1500.0])
+pos_lim_max = np.array([0.25, 0.22, 48000.0, 4000.0])
 
 # Setting emcee
 ndim = len(pos_lim_min)
@@ -45,18 +45,15 @@ b.set_value('ld_func', component='secondary', dataset='lc01', value='logarithmic
 b.set_value_all('ld_mode_bol', value='manual')
 b.set_value('atm@primary@phoebe01@phoebe@compute', value='blackbody')
 b.set_value('atm@secondary@phoebe01@phoebe@compute', value='blackbody')
-b.set_value('ecc', component='binary', value = ecc)
 
 # Set model and create light curve
 def LC_sim_r(params_fit):
-	(r1, r2, T1, T2, pblum) = params_fit
+	(r1, r2, T1, T2) = params_fit
 	b_model = b
 	b_model.set_value('requiv', component='primary', value=r1)
 	b_model.set_value('requiv', component='secondary', value=r2)
 	b_model.set_value('teff', component='primary', value = T1)
 	b_model.set_value('teff', component='secondary', value = T2)
-	b_model.set_value('period', component='binary', value = P)
-	b_model.set_value('pblum', component='primary', value = pblum*np.pi)
 	
 	# Compute a model
 	b_model.run_compute()
