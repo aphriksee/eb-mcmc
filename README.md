@@ -16,3 +16,4 @@ Use PHOEBE and MCMC technique to estimate the physical parameters of eclipsing b
 * PHOEBE, ver. 2.2.1, phoebe-project.org
 * emcee, ver. 3.0.2,  github.com/dfm/emcee
 * corner, ver. 2.0.1, github.com/dfm/corner.py
+* schwimmbad, ver. 0.3.1
