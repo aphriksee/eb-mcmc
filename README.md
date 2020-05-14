@@ -1,4 +1,4 @@
-# eb-mcmc
+# Eclipsing Binaries - MCMC
 Use PHOEBE and MCMC technique to estimate the physical parameters of eclipsing binary systems
 
 ## Running an example code
