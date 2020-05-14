@@ -21,9 +21,9 @@ os.environ.update(temp_environ)
 
 # Input data
 data = np.loadtxt("mock_data.dat")
-JD       = data
-flux     = data
-err_gflux = data
+JD       = data[:, 0]
+flux     = data[:, 1]
+err_gflux = data[:, 2]
 
 # Setting BC
 pos_lim_min = np.array([0.15, 0.10, 35000.0, 1500.0, 1.0])
