@@ -1,6 +1,12 @@
 # eb-mcmc
 Use PHOEBE and MCMC technique to estimate the physical parameters of eclipsing binary systems
 
+## Running an example code
+
+```
+mpiexec -n 56 python example.py
+```
+
 ### Prerequisites
 * PHOEBE
 * emcee
