@@ -32,7 +32,7 @@ pos_lim_max = np.array([0.25, 0.22, 48000.0, 4000.0, 10.0])
 # Setting emcee
 ndim = len(pos_lim_min)
 nwalkers = 10 * ndim
-burnin = 1000
+burnin = 100
 
 # Set the initial binary model
 b = phoebe.default_binary()
@@ -97,9 +97,18 @@ def main_fit():
 		sys.exit(0)
 	psize = pos_lim_max-pos_lim_min
 	p0   = [pos_lim_min + psize*np.random.rand(ndim) for i in range(nwalkers)]
+	
+	# Set initial sample
 	sampler = emcee.EnsembleSampler(nwalkers, ndim, lnprob, pool=pool)
+	# Run MCMC
+	sampler.run_mcmc(p0, burnin)
+	# Flat sample and discard 10% sample
+	flat_samples = sampler.get_chain(discard=int(0.1 * burnin), flat=True)
 	pool.close()
+	return flat_samples
 
 # Call main program
 if __name__ == "__main__":
-	main_fit()
+	sample0 = main_fit()
+	# Plot MCMC results
+	fig = (sample0, bins = 40, smooth=True)
