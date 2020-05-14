@@ -11,6 +11,7 @@ import numpy as np
 import emcee
 import time
 from schwimmbad import MPIPool
+import corner
 
 # Try to force the PHOEBE to run with single core in each value
 temp_environ = dict(os.environ)
@@ -109,4 +110,5 @@ def main_fit():
 if __name__ == "__main__":
 	sample0 = main_fit()
 	# Plot MCMC results
-	fig = (sample0, bins = 40, smooth=True)
+	fig = corner.corner(sample0, bins = 20, smooth=True)
+	fig.savefig("mcmc_results.png", dpi=300)
