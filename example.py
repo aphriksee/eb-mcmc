@@ -23,16 +23,16 @@ os.environ.update(temp_environ)
 data = np.loadtxt("mock_data.dat")
 JD       = data[:, 0]
 flux     = data[:, 1]
-err_gflux = data[:, 2]
+err_flux = data[:, 2]
 
 # Setting BC
-pos_lim_min = np.array([0.15, 0.10, 35000.0, 1500.0])
-pos_lim_max = np.array([0.25, 0.22, 48000.0, 4000.0])
+pos_lim_min = np.array([0.30, 0.40, 25000.0, 10000.0])
+pos_lim_max = np.array([0.60, 0.50, 45000.0, 20000.0])
 
 # Setting emcee
 ndim = len(pos_lim_min)
 nwalkers = 10 * ndim
-burnin = 100
+burnin = 500
 
 # Set the initial binary model
 b = phoebe.default_binary()
@@ -47,7 +47,7 @@ b.set_value('atm@primary@phoebe01@phoebe@compute', value='blackbody')
 b.set_value('atm@secondary@phoebe01@phoebe@compute', value='blackbody')
 
 # Set model and create light curve
-def LC_sim_r(params_fit):
+def LC_sim(params_fit):
 	(r1, r2, T1, T2) = params_fit
 	b_model = b
 	b_model.set_value('requiv', component='primary', value=r1)
