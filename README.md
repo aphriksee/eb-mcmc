@@ -9,7 +9,7 @@ Use PHOEBE and MCMC technique to estimate the physical parameters of eclipsing b
 
 ### Feature
 - Model the light curve (synthetic line) using the PHOEBE
-- Use MPI and EMCEE to find the posterior distribution for the physical parameters
+- Use MPI and EMCEE to parallel run and find the posterior distribution for the physical parameters
 - Plot the results using the CORNER package
 
 ### Link (with tested version)
