@@ -1,4 +1,4 @@
-# Fitting emcee with Phoebe
+# Fitting Phoebe with emcee
 # A. Phriksee
 # Ver. 1.0, 14/05/2020
  
