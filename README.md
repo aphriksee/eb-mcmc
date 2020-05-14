@@ -2,9 +2,9 @@
 Use PHOEBE and MCMC technique to estimate the physical parameters of eclipsing binary systems
 
 ## Running an example code
-
+Write a simple code for the MPI job
 ```
-mpiexec -n 56 python example.py
+mpiexec -n 32 python example.py
 ```
 
 ### Prerequisites
