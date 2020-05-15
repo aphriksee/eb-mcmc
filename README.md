@@ -12,6 +12,9 @@ mpiexec -n 32 python example.py
 - Use MPI and EMCEE to parallel run and find the posterior distribution
 - Plot the results using the CORNER package
 
+### Speed
+![Cores vs Time](test/speed.png)
+
 ### Prerequisites (tested version)
 * PHOEBE, ver. 2.2.1, phoebe-project.org
 * emcee, ver. 3.0.2,  github.com/dfm/emcee
