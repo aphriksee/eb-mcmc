@@ -13,6 +13,8 @@ mpiexec -n 32 python example.py
 - Plot the results using the CORNER package
 
 ### Speed
+Try to run an exmaple code with different number of CPU cores. 
+(Fixed Nwalker = 10 * Ndim, and 20 steps)
 ![Cores vs Time](test/speed.png)
 
 ### Prerequisites (tested version)
