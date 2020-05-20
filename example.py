@@ -25,6 +25,7 @@ data = np.loadtxt("mock_data.dat")
 JD       = data[:, 0]
 flux     = data[:, 1]
 err_flux = data[:, 2]
+sigma2 = err_flux**2.0
 
 # Setting BC
 pos_lim_min = np.array([0.30, 0.40, 25000.0, 10000.0])
@@ -72,7 +73,6 @@ def lnprior(theta):
 # Log-likelihood function
 def lnlike(theta):
 	LC_model = LC_sim(theta)
-	sigma2 = err_flux**2.0
 	chisq = np.sum((flux - LC_model)**2.0 / sigma2)
 	return -0.5 * chisq
 
