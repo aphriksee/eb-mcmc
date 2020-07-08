@@ -12,6 +12,15 @@ mpiexec -n 32 python example.py
 - Use MPI and EMCEE to parallel run and find the posterior distribution
 - Plot the results using the CORNER package
 
+
+### Example : 
+Let consider an ecclipsing bianry system, we would like to extract the physical parameters :
+Radius, Temperature, Period, t0, semi-major-axis, mass ration and inclination.
+
+![Priliminary results of Posterior distributions from emcee](example/results.png)
+*we will public the full results soon!
+
+
 ### Speed
 Try to run an exmaple code with vary number of CPU cores
 
